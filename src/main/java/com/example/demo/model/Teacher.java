@@ -3,8 +3,8 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "students")
-public class Student {
+@Table(name = "teachers")
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,24 +12,18 @@ public class Student {
 
     private String firstName;
     private String lastName;
-
-    @Column(unique = true, nullable = false)
-    private String email;
-    private String course;
-    private Double grade; // Added for student viewing assignment criteria
+    private String department;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity userEntity;
 
-    public Student() {}
+    public Teacher() {}
 
-    public Student(String firstName, String lastName, String email, String course, Double grade, UserEntity userEntity) {
+    public Teacher(String firstName, String lastName, String department, UserEntity userEntity) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.course = course;
-        this.grade = grade;
+        this.department = department;
         this.userEntity = userEntity;
     }
 
@@ -40,12 +34,8 @@ public class Student {
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    public String getCourse() { return course; }
-    public void setCourse(String course) { this.course = course; }
-    public Double getGrade() { return grade; }
-    public void setGrade(Double grade) { this.grade = grade; }
+    public String getDepartment() { return department; }
+    public void setDepartment(String department) { this.department = department; }
     public UserEntity getUserEntity() { return userEntity; }
     public void setUserEntity(UserEntity userEntity) { this.userEntity = userEntity; }
 }
